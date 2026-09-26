@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Yokudo Hub Key</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 15% 15%, rgba(130,130,130,.22), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(100,100,100,.18), transparent 30%),
+        linear-gradient(135deg, #151515, #070707 55%, #000);
+
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* BACKGROUND */
+
+.background {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(80px);
+    opacity: .16;
+}
+
+.orb.one {
+    width: 280px;
+    height: 280px;
+    background: #fff;
+    top: -100px;
+    left: -80px;
+    animation: orb1 8s ease-in-out infinite alternate;
+}
+
+.orb.two {
+    width: 350px;
+    height: 350px;
+    background: #777;
+    bottom: -160px;
+    right: -100px;
+    animation: orb2 10s ease-in-out infinite alternate;
+}
+
+.orb.three {
+    width: 180px;
+    height: 180px;
+    background: #aaa;
+    top: 45%;
+    left: 48%;
+    opacity: .07;
+    animation: orb3 7s ease-in-out infinite alternate;
+}
+
+@keyframes orb1 {
+    to {
+        transform: translate(100px,80px);
+    }
+}
+
+@keyframes orb2 {
+    to {
+        transform: translate(-100px,-80px);
+    }
+}
+
+@keyframes orb3 {
+    to {
+        transform: scale(1.4);
+    }
+}
+
+/* PARTICLES */
+
+.particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.particles span {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #aaa;
+    border-radius: 50%;
+    opacity: 0;
+
+    animation: particleFloat linear infinite;
+}
+
+.particles span:nth-child(1) {
+    left: 10%;
+    animation-duration: 8s;
+}
+
+.particles span:nth-child(2) {
+    left: 22%;
+    animation-duration: 11s;
+    animation-delay: 2s;
+}
+
+.particles span:nth-child(3) {
+    left: 35%;
+    animation-duration: 7s;
+    animation-delay: 1s;
+}
+
+.particles span:nth-child(4) {
+    left: 48%;
+    animation-duration: 10s;
+    animation-delay: 3s;
+}
+
+.particles span:nth-child(5) {
+    left: 61%;
+    animation-duration: 9s;
+}
+
+.particles span:nth-child(6) {
+    left: 73%;
+    animation-duration: 12s;
+    animation-delay: 2s;
+}
+
+.particles span:nth-child(7) {
+    left: 86%;
+    animation-duration: 8s;
+    animation-delay: 4s;
+}
+
+@keyframes particleFloat {
+    0% {
+        top: 110%;
+        opacity: 0;
+    }
+
+    15% {
+        opacity: .7;
+    }
+
+    80% {
+        opacity: .4;
+    }
+
+    100% {
+        top: -10%;
+        opacity: 0;
+    }
+}
+
+/* CARD */
+
+.container {
+    position: relative;
+    width: min(92%, 550px);
+    padding: 48px 35px;
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(35,35,35,.9),
+            rgba(8,8,8,.9)
+        );
+
+    border: 1px solid rgba(255,255,255,.12);
+
+    backdrop-filter: blur(25px);
+    -webkit-backdrop-filter: blur(25px);
+
+    box-shadow:
+        0 30px 100px rgba(0,0,0,.8),
+        inset 0 1px 0 rgba(255,255,255,.08);
+
+    text-align: center;
+
+    animation:
+        cardAppear 1s cubic-bezier(.2,.8,.2,1),
+        cardFloat 6s ease-in-out infinite;
+
+    z-index: 5;
+}
+
+@keyframes cardAppear {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(.92);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes cardFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-7px);
+    }
+}
+
+/* MOVING BORDER */
+
+.container::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            120deg,
+            transparent,
+            rgba(255,255,255,.18),
+            transparent,
+            rgba(255,255,255,.08),
+            transparent
+        );
+
+    background-size: 300% 300%;
+    z-index: -1;
+
+    animation: borderMove 6s linear infinite;
+}
+
+@keyframes borderMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* =========================
+   PERFECT SHARINGAN LOGO
+========================= */
+
+.logo-wrap {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 27px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation: logoFloat 4s ease-in-out infinite;
+}
+
+.logo-glow {
+    position: absolute;
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+
+    background: rgba(255,255,255,.08);
+    filter: blur(25px);
+
+    animation: glowPulse 2.5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+    0%,100% {
+        transform: scale(.9);
+        opacity: .35;
+    }
+
+    50% {
+        transform: scale(1.15);
+        opacity: .7;
+    }
+}
+
+.sharingan {
+    position: relative;
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    filter:
+        drop-shadow(0 0 10px rgba(255,255,255,.3))
+        drop-shadow(0 0 25px rgba(255,255,255,.12));
+
+    animation: sharinganSpin 12s linear infinite;
+}
+
+@keyframes sharinganSpin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes logoFloat {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* TITLE */
+
+h1 {
+    font-family: "Orbitron", sans-serif;
+    font-size: clamp(28px, 7vw, 41px);
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+
+    background:
+        linear-gradient(
+            120deg,
+            #fff,
+            #777,
+            #fff,
+            #aaa
+        );
+
+    background-size: 250% auto;
+
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    animation: titleShine 5s linear infinite;
+}
+
+@keyframes titleShine {
+    from {
+        background-position: 0% center;
+    }
+
+    to {
+        background-position: 250% center;
+    }
+}
+
+.subtitle {
+    color: #8d8d8d;
+    font-size: 14px;
+    letter-spacing: 1px;
+    margin-bottom: 31px;
+}
+
+/* KEY BOX */
+
+.key-box {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    padding: 7px;
+    border-radius: 17px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.07),
+            rgba(0,0,0,.5)
+        );
+
+    border: 1px solid rgba(255,255,255,.13);
+
+    overflow: hidden;
+}
+
+.key-box::before {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 300%;
+
+    top: -100%;
+    left: -130px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,.18),
+            transparent
+        );
+
+    transform: rotate(20deg);
+
+    animation: shineBox 4s linear infinite;
+}
+
+@keyframes shineBox {
+    0% {
+        left: -150px;
+    }
+
+    50% {
+        left: 120%;
+    }
+
+    100% {
+        left: 120%;
+    }
+}
+
+.key {
+    position: relative;
+    z-index: 2;
+
+    flex: 1;
+    min-width: 0;
+
+    padding: 15px 12px;
+
+    color: #d5d5d5;
+
+    font-family: monospace;
+    font-size: 13px;
+
+    text-align: left;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* BUTTON */
+
+.copy-btn {
+    position: relative;
+    z-index: 3;
+
+    border: none;
+    outline: none;
+
+    padding: 15px 21px;
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f4f4f4,
+            #999
+        );
+
+    color: #050505;
+
+    font-size: 13px;
+    font-weight: 900;
+    letter-spacing: .5px;
+
+    cursor: pointer;
+    overflow: hidden;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+}
+
+.copy-btn::before {
+    content: "";
+
+    position: absolute;
+
+    width: 40px;
+    height: 160px;
+
+    top: -30px;
+    left: -60px;
+
+    background: rgba(255,255,255,.6);
+
+    transform: rotate(25deg);
+
+    transition: .5s;
+}
+
+.copy-btn:hover::before {
+    left: 130%;
+}
+
+.copy-btn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.12);
+
+    box-shadow:
+        0 10px 35px rgba(255,255,255,.2);
+}
+
+.copy-btn:active {
+    transform: scale(.94);
+}
+
+/* STATUS */
+
+.status {
+    height: 22px;
+    margin-top: 14px;
+
+    font-size: 13px;
+    color: #aaa;
+
+    transition: .3s;
+}
+
+/* FOOTER */
+
+.footer {
+    margin-top: 31px;
+
+    color: #4f4f4f;
+
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* MOBILE */
+
+@media (max-width: 520px) {
+
+    body {
+        padding: 20px;
+    }
+
+    .container {
+        padding: 38px 20px;
+        border-radius: 27px;
+    }
+
+    .logo-wrap {
+        width: 130px;
+        height: 130px;
+    }
+
+    .logo-glow {
+        width: 125px;
+        height: 125px;
+    }
+
+    .sharingan {
+        width: 108px;
+        height: 108px;
+    }
+
+    h1 {
+        font-size: 27px;
+    }
+
+    .key-box {
+        flex-direction: column;
+        padding: 9px;
+    }
+
+    .key {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+    }
+
+    .copy-btn {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="background">
+    <div class="orb one"></div>
+    <div class="orb two"></div>
+    <div class="orb three"></div>
+</div>
+
+<div class="particles">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+</div>
+
+<div class="container">
+
+    <!-- SHARINGAN SVG -->
+    <div class="logo-wrap">
+
+        <div class="logo-glow"></div>
+
+        <svg
+            class="sharingan"
+            viewBox="0 0 200 200"
+            xmlns="http://www.w3.org/2000/svg">
+
+            <!-- Outer rings -->
+            <circle
+                cx="100"
+                cy="100"
+                r="94"
+                fill="#101010"
+                stroke="#999"
+                stroke-width="5"/>
+
+            <circle
+                cx="100"
+                cy="100"
+                r="82"
+                fill="none"
+                stroke="#555"
+                stroke-width="3"/>
+
+            <circle
+                cx="100"
+                cy="100"
+                r="67"
+                fill="none"
+                stroke="#777"
+                stroke-width="2"/>
+
+            <!-- Center -->
+            <circle
+                cx="100"
+                cy="100"
+                r="24"
+                fill="#080808"
+                stroke="#888"
+                stroke-width="4"/>
+
+            <circle
+                cx="100"
+                cy="100"
+                r="8"
+                fill="#aaa"/>
+
+            <!-- TOMOE 1 -->
+            <g transform="rotate(0 100 100)">
+                <path
+                    d="
+                    M100 38
+                    C112 38 121 46 121 57
+                    C121 66 115 72 106 72
+                    C112 66 113 58 109 53
+                    C106 49 101 47 96 47
+                    C94 43 96 39 100 38
+                    Z"
+                    fill="#777"
+                    stroke="#aaa"
+                    stroke-width="2"/>
+            </g>
+
+            <!-- TOMOE 2 -->
+            <g transform="rotate(120 100 100)">
+                <path
+                    d="
+                    M100 38
+                    C112 38 121 46 121 57
+                    C121 66 115 72 106 72
+                    C112 66 113 58 109 53
+                    C106 49 101 47 96 47
+                    C94 43 96 39 100 38
+                    Z"
+                    fill="#777"
+                    stroke="#aaa"
+                    stroke-width="2"/>
+            </g>
+
+            <!-- TOMOE 3 -->
+            <g transform="rotate(240 100 100)">
+                <path
+                    d="
+                    M100 38
+                    C112 38 121 46 121 57
+                    C121 66 115 72 106 72
+                    C112 66 113 58 109 53
+                    C106 49 101 47 96 47
+                    C94 43 96 39 100 38
+                    Z"
+                    fill="#777"
+                    stroke="#aaa"
+                    stroke-width="2"/>
+            </g>
+
+        </svg>
+
+    </div>
+
+    <h1>Yokudo Hub Key</h1>
+
+    <div class="subtitle">
+        Your key is ready. Copy it below.
+    </div>
+
+    <div class="key-box">
+
+        <div class="key" id="key">
+            YokudoHubKeyGdjsi - Nsksowiwjwooenekeek
+        </div>
+
+        <button
+            class="copy-btn"
+            onclick="copyKey()">
+            COPY KEY
+        </button>
+
+    </div>
+
+    <div
+        class="status"
+        id="status">
+    </div>
+
+    <div class="footer">
+        YOKUDO HUB • KEY SYSTEM
+    </div>
+
+</div>
+
+<script>
+
+const key =
+"YokudoHubKeyGdjsi - Nsksowiwjwooenekeek";
+
+function copyKey() {
+
+    navigator.clipboard.writeText(key)
+    .then(() => {
+
+        showSuccess();
+
+    })
+    .catch(() => {
+
+        const textarea =
+            document.createElement("textarea");
+
+        textarea.value = key;
+
+        document.body.appendChild(textarea);
+
+        textarea.select();
+
+        document.execCommand("copy");
+
+        textarea.remove();
+
+        showSuccess();
+    });
+}
+
+function showSuccess() {
+
+    const status =
+        document.getElementById("status");
+
+    status.textContent =
+        "✓ KEY COPIED SUCCESSFULLY";
+
+    status.style.color =
+        "#eeeeee";
+
+    setTimeout(() => {
+        status.textContent = "";
+    }, 2500);
+}
+
+</script>
+
+</body>
+</html>
